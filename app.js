@@ -64,7 +64,7 @@ var UIController = (function() {
 		inputValue: '.add__value',
 		inputbtn: '.add__btn',
 		incomeContainer: '.income__list',
-		expenseContainer: '.expense__list'
+		expenseContainer: '.expenses__list'
 	}
 	return {
 		getInput: function() {
@@ -97,10 +97,24 @@ var UIController = (function() {
 			newHtml = newHtml.replace('%value%', obj.value);
 			//Insert HTML into the DOM
 			document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+		},
+
+		clearFields: function() {
+			var fields, fieldsArr;
+			fields = document.querySelectorAll(DOMstrings.inputDescription+ ', ' + DOMstrings.inputValue);
+
+			//fieldsArr = Array.prototype.slice.call(fields);
+
+			fields.forEach(function(current, index, array) {
+				current.value = "";
+			});
+
+			fields[0].focus();
+			/*console.log(fieldsArr);*/
+			//console.log(fields);
 		}
 	};
 })();
-
 
 var controller = (function (budgetCtrl, UICtrl) {
 
@@ -122,12 +136,15 @@ var controller = (function (budgetCtrl, UICtrl) {
 	var ctrlAddItem = function() {
 		//Get the field input data
 		var input, newItem;
-		//1- Get field input data
+		//1. Get field input data
 		input = UICtrl.getInput();
 		//2. Add the item to the budget controller
 		newItem = budgetCtrl.addItem(input.type, input.description, input.value);
-		//Add the item  to the UI
+		//3. Add the item  to the UI
 		UICtrl.addListItem(newItem, input.type);
+		//4. Clear the fields
+		UICtrl.clearFields();
+		//
 	};
 
 	return {
