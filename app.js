@@ -1,12 +1,12 @@
 var budgetController = (function(){
 
-	var Expense = function(id, description, value){
+	var Expense = function(id, description, value) {
 		this.id = id;
 		this.description = description;
 		this.value = value;
 	};
 
-	var Income = function(id, description, value){
+	var Income = function(id, description, value) {
 		this.id = id;
 		this.description = description;
 		this.value = value;
@@ -32,21 +32,25 @@ var budgetController = (function(){
 			if (data.allItems[type].lenght > 0) {
 
 				ID = data.allItems[type][data.allItems[type].length - 1]. id +1;
-			} ele {
+			} else {
 
 				ID = 0;
 			}
 			if (type === 'exp') {
 
-				newItem new Expense(ID, des, val);
+				newItem = new Expense(ID, des, val);
 			} else {
 
-				newItem new Income(ID, des, val);
+				newItem = new Income(ID, des, val);
 			}
 
 			data.allItems[type].push(newItem);
 
 			return newItem;
+		},
+
+		testing: function() {
+			console.log(data);
 		}
 	};
 })();
@@ -87,6 +91,7 @@ var controller = (function (budgetCtrl, UICtrl) {
 			if (event.keyCode === 13 || event.which === 13) {
 
 				ctrlAddItem();
+				console.log('ok');
 			}
 		});
 
