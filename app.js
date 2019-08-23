@@ -1,4 +1,4 @@
-var budgetController = (function(){
+var budgetController = (function() {
 
 	var Expense = function(id, description, value) {
 		this.id = id;
@@ -16,9 +16,9 @@ var budgetController = (function(){
 
 		var sum = 0;
 		data.allItems[type].forEach(function(cur){
-			sum += sum.value;
+			sum += cur.value;
 		});
-		data,totals[type] = sum;
+		data.totals[type] = sum;
 	};
 
 	var data = {
@@ -137,6 +137,7 @@ var UIController = (function() {
 
 		clearFields: function() {
 			var fields, fieldsArr;
+
 			fields = document.querySelectorAll(DOMstrings.inputDescription+ ', ' + DOMstrings.inputValue);
 
 			//fieldsArr = Array.prototype.slice.call(fields);
@@ -164,7 +165,7 @@ var controller = (function (budgetCtrl, UICtrl) {
 			if (event.keyCode === 13 || event.which === 13) {
 
 				ctrlAddItem();
-				console.log('ok');
+				/*console.log('ok');*/
 			}
 		});
 
@@ -194,6 +195,7 @@ var controller = (function (budgetCtrl, UICtrl) {
 			//4. Clear the fields
 			UICtrl.clearFields();
 			//5. Calculate and update budget
+			updateBudget();
 		}
 	};
 
