@@ -57,6 +57,7 @@ var budgetController = (function() {
 
 			data.allItems[type].push(newItem);
 
+
 			return newItem;
 		},
 
@@ -164,7 +165,6 @@ var UIController = (function() {
 			var fields, fieldsArr;
 
 			fields = document.querySelectorAll(DOMstrings.inputDescription+ ', ' + DOMstrings.inputValue);
-
 			//fieldsArr = Array.prototype.slice.call(fields);
 
 			fields.forEach(function(current, index, array) {
@@ -224,6 +224,12 @@ var controller = (function (budgetCtrl, UICtrl) {
 		UICtrl.displayBudget(budget);
 	};
 
+	var updatePercentages = function() {
+
+		//1-. Calculate percentages
+		//2. Read percentahes from the budget controller
+		//3-. Update the UI
+	};
 	var ctrlAddItem = function() {
 		//Get the field input data
 		var input, newItem;
@@ -239,6 +245,9 @@ var controller = (function (budgetCtrl, UICtrl) {
 			UICtrl.clearFields();
 			//5. Calculate and update budget
 			updateBudget();
+
+			//Update and calculate percentages
+			updatePercentages();
 		}
 	};
 
@@ -258,6 +267,8 @@ var controller = (function (budgetCtrl, UICtrl) {
 			UICtrl.deleteListItem(itemID);
 			//3. Update and show the new budget
 			updateBudget();
+			//Update and calculate percentages
+			updatePercentages();
 		}
 
 
